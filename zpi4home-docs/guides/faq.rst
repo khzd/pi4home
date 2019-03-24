@@ -146,7 +146,7 @@ by installing the pi4home beta:
 
 And for Hass.io, you will see a "PI4Home Beta" Add-On for the beta channel.
 
-The beta docs can be viewed at `beta.pi4home.io <https://beta.pi4home.io>`__
+The beta docs can be viewed at `beta.khzd/pi4home <https://beta.khzd/pi4home>`__
 
 How do I use the latest bleeding edge version?
 ----------------------------------------------
@@ -173,7 +173,7 @@ To install the dev version of PI4Home:
       git pull
       docker build -t pi4home-dev -f docker/Dockerfile .
 
-The latest dev docs are here: `next.pi4home.io <https://next.pi4home.io/>`__
+The latest dev docs are here: `next.khzd/pi4home <https://next.khzd/pi4home/>`__
 
 Does PI4Home support [this device/feature]?
 -------------------------------------------
@@ -192,7 +192,7 @@ Sure! I'd be happy to help :) You can contact me here:
 -  PI4Home `issue <https://github.com/khzd/pi4home/issues>`__ and
    `feature request <https://github.com/khzd/pi4home/feature-requests>`__ issue trackers. Preferably only for issues and
    feature requests.
--  Alternatively, also under contact (at) pi4home.io (NO SUPPORT!)
+-  Alternatively, also under contact (at) khzd/pi4home (NO SUPPORT!)
 
 .. _wifi-problems:
 

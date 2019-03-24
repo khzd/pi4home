@@ -209,7 +209,7 @@ void WebServer::handle_index_request(AsyncWebServerRequest *request) {
   if (this->css_url_ != nullptr) {
     stream->print(this->css_url_);
   } else {
-    stream->print(F("https://pi4home.io/_static/webserver-v1.min.css"));
+    stream->print(F("https://khzd/pi4home/_static/webserver-v1.min.css"));
   }
   stream->print(F("\"></head><body><article class=\"markdown-body\"><h1>"));
   stream->print(title.c_str());
@@ -251,7 +251,7 @@ void WebServer::handle_index_request(AsyncWebServerRequest *request) {
       write_row(stream, obj, "text_sensor", "");
 #endif
 
-  stream->print(F("</tbody></table><p>See <a href=\"https://pi4home.io/web-api/index.html\">PI4Home Web API</a> for "
+  stream->print(F("</tbody></table><p>See <a href=\"https://khzd/pi4home/web-api/index.html\">PI4Home Web API</a> for "
                   "REST API documentation.</p>"
                   "<h2>OTA Update</h2><form method='POST' action=\"/update\" enctype=\"multipart/form-data\"><input "
                   "type=\"file\" name=\"update\"><input type=\"submit\" value=\"Update\"></form>"
@@ -260,7 +260,7 @@ void WebServer::handle_index_request(AsyncWebServerRequest *request) {
   if (this->js_url_ != nullptr) {
     stream->print(this->js_url_);
   } else {
-    stream->print(F("https://pi4home.io/_static/webserver-v1.min.js"));
+    stream->print(F("https://khzd/pi4home/_static/webserver-v1.min.js"));
   }
   stream->print(F("\"></script></article></body></html>"));
 

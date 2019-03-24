@@ -25,10 +25,10 @@ struct UrlMatch {
  *
  * Behind the scenes it's using AsyncWebServer to set up the server. It exposes 3 things:
  * an index page under '/' that's used to show a simple web interface (the css/js is hosted
- * by pi4home.io by default), an event source under '/events' that automatically sends
+ * by khzd/pi4home by default), an event source under '/events' that automatically sends
  * all state updates in real time + the debug log. Lastly, there's an REST API available
  * under the '/light/...', '/sensor/...', ... URLs. A full documentation for this API
- * can be found under https://pi4home.io/web-api/index.html.
+ * can be found under https://khzd/pi4home/web-api/index.html.
  */
 class WebServer : public StoringUpdateListenerController, public Component, public AsyncWebHandler {
  public:
@@ -36,14 +36,14 @@ class WebServer : public StoringUpdateListenerController, public Component, publ
   explicit WebServer(uint16_t port);
 
   /** Set the URL to the CSS <link> that's sent to each client. Defaults to
-   * https://pi4home.io/_static/webserver-v1.min.css
+   * https://khzd/pi4home/_static/webserver-v1.min.css
    *
    * @param css_url The url to the web server stylesheet.
    */
   void set_css_url(const char *css_url);
 
   /** Set the URL to the script that's embedded in the index page. Defaults to
-   * https://pi4home.io/_static/webserver-v1.min.js
+   * https://khzd/pi4home/_static/webserver-v1.min.js
    *
    * @param js_url The url to the web server script.
    */

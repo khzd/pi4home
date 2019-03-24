@@ -19,7 +19,7 @@ def find_all(a_str, sub):
 section_regex = re.compile(r'^(=+|-+|\*+|~+)$')
 directive_regex = re.compile(r'^(\s*)\.\. (.*)::.*$')
 directive_arg_regex = re.compile(r'^(\s+):.*:\s*.*$')
-pi4home_io_regex = re.compile(r'https://pi4home.io/')
+pi4home_io_regex = re.compile(r'https://khzd/pi4home/')
 
 
 for f in sorted(Path('.').glob('**/*.rst')):
@@ -115,7 +115,7 @@ for f in sorted(Path('.').glob('**/*.rst')):
         if pi4home_io_regex.search(line):
             if 'privacy.rst' in str(f) or 'web_server.rst' in str(f):
                 continue
-            errors.append("All links to pi4home.io should be relative, please remove pi4home.io "
+            errors.append("All links to khzd/pi4home should be relative, please remove khzd/pi4home "
                           "from URL. See {}:{}".format(f, i+1))
 
 

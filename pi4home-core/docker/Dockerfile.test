@@ -1,5 +1,5 @@
 FROM python:2.7
-MAINTAINER Otto Winter <contact@otto-winter.com>
+MAINTAINER pi4homez <pi4homez@gmail.com>
 
 RUN pip install --no-cache-dir platformio && \
     platformio settings set enable_telemetry No

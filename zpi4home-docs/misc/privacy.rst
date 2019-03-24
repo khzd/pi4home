@@ -3,7 +3,7 @@ Privacy Policy
 
 *Effective date: December 31, 2018*
 
-The pi4homelib team ("us", "we", or "our") operates the https://pi4homelib.com/ and https://pi4home.io/ website
+The pi4homelib team ("us", "we", or "our") operates the https://pi4homelib.com/ and https://khzd/pi4home/ website
 (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use
@@ -126,4 +126,4 @@ when they are posted on this page.
 Contact Us
 ----------
 
-If you have any questions about this Privacy Policy, please contact us by email: contact@otto-winter.com
+If you have any questions about this Privacy Policy, please contact us by email: pi4homez@gmail.com

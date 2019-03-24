@@ -61,10 +61,10 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PI4Home'
-copyright = '2019, Otto Winter'
+copyright = '2019, pi4homez@gmail.com'
 html_show_copyright = False
 html_show_sphinx = False
-author = 'Otto Winter'
+author = 'pi4homez@gmail.com'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -112,7 +112,7 @@ html_theme = 'alabaster'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_baseurl = os.getenv('BASE_URL', 'https://pi4home.io')
+html_baseurl = os.getenv('BASE_URL', 'https://khzd/pi4home')
 with open('_static/custom.css', 'rb') as f:
     custom_css_hash = hashlib.md5(f.read()).hexdigest()[:8]
 
@@ -186,7 +186,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'pi4home.tex', 'PI4Home Documentation',
-     'Otto Winter', 'manual'),
+     'pi4homez@gmail.com', 'manual'),
 ]
 
 latex_engine = 'xelatex'

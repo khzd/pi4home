@@ -1,16 +1,16 @@
 [build]
   publish = "_build/html"
   command = "make netlify"
-  environment = { BASE_URL = "https://pi4home.io" }
+  environment = { BASE_URL = "https://khzd/pi4home" }
 
 [context.beta]
-  environment = { BASE_URL = "https://beta.pi4home.io" }
+  environment = { BASE_URL = "https://beta.khzd/pi4home" }
 
 [context.next]
-  environment = { BASE_URL = "https://next.pi4home.io" }
+  environment = { BASE_URL = "https://next.khzd/pi4home" }
 
 [context.production]
-  environment = { BASE_URL = "https://pi4home.io", PRODUCTION = "YES" }
+  environment = { BASE_URL = "https://khzd/pi4home", PRODUCTION = "YES" }
 
 # A basic redirect rule
 [[redirects]]

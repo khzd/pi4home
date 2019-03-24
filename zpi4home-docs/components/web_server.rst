@@ -14,7 +14,7 @@ To navigate to the web server in your browser, either use the IP address of the 
 use ``<node_name>.local/`` (note the trailing forward slash) via mDNS.
 
 To conserve flash size, the CSS and JS files used on the root page to show a simple user
-interface are hosted by pi4home.io. If you want to use your own service, use the
+interface are hosted by khzd/pi4home. If you want to use your own service, use the
 ``css_url`` and ``js_url`` options in your configuration.
 
 .. _REST API: /web-api/index.html
@@ -35,9 +35,9 @@ Configuration variables:
 
 - **port** (*Optional*, int): The port the web server should open its socket on.
 - **css_url** (*Optional*, url): The URL that should be used for the CSS stylesheet. Defaults
-  to https://pi4home.io/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
+  to https://khzd/pi4home/_static/webserver-v1.min.css (updates will go to ``v2``, ``v3``, etc).
 - **js_url** (*Optional*, url): The URL that should be used for the JS script. Defaults
-  to https://pi4home.io/_static/webserver-v1.min.js.
+  to https://khzd/pi4home/_static/webserver-v1.min.js.
 - **id** (*Optional*, :ref:`config-id`): Manually specify the ID used for code generation.
 
 .. note::

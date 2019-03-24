@@ -44,4 +44,4 @@ def create_sitemap(app, exception):
             f.write('User-agent: *\nDisallow: /\n')
         else:
             f.write('User-agent: *\nDisallow: \n\n'
-                    'Sitemap: https://pi4home.io/sitemap.xml\n')
+                    'Sitemap: https://khzd/pi4home/sitemap.xml\n')
