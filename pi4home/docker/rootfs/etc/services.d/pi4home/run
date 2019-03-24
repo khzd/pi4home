@@ -1,0 +1,28 @@
+#!/usr/bin/with-contenv bash
+# ==============================================================================
+# Community Hass.io Add-ons: PI4Home
+# Runs the PI4Home dashboard
+# ==============================================================================
+# shellcheck disable=SC1091
+source /usr/lib/hassio-addons/base.sh
+
+export PI4HOME_IS_HASSIO=true
+
+if hass.config.true 'leave_front_door_open'; then
+    export DISABLE_HA_AUTHENTICATION=true
+fi
+
+if hass.config.true 'streamer_mode'; then
+    export PI4HOME_STREAMER_MODE=true
+fi
+
+if hass.config.true 'status_use_ping'; then
+    export PI4HOME_DASHBOARD_USE_PING=true
+fi
+
+if hass.config.has_value 'relative_url'; then
+    export PI4HOME_DASHBOARD_RELATIVE_URL=$(hass.config.get 'relative_url')
+fi
+
+hass.log.info "Starting PI4Home dashboard..."
+exec pi4home /config/pi4home dashboard --socket /var/run/pi4home.sock --hassio

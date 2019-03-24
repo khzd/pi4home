@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg4910" viewBox="0 0 600 600" version="1.1">
+  <g id="layer1" transform="translate(-93.991 -212.99)">
+    <path id="rect4886" d="m669.08 247.6c-124.67 0.7349-249.35-0.1383-374.02 0.3307-33.876 0.2722-40.957 1.2158-46.264 2.0755-32.004 5.1843-45.23 11.38-65.094 30.594-22.937 22.186-38.61 46.048-52.5 79.875-4.477 10.903-12.027 32.811-15.5 44.938l-1.5 5.25 17.375-0.031 6.3438-10.281c15.054-24.471 33.057-45.134 47.469-54.5 17.984-11.688 41.997-17.162 75.562-17.188h11.344c-2.5989 29.804-4.5922 59.661-6.75 89.5-6.7028 93.243-6.803 94.425-10.562 118.5-10.954 70.149-20.595 96.734-49.812 137.38-26.329 36.623-30.848 45.184-33.031 62.594-3.0318 24.18 9.6834 44.375 33.031 52.5 10.888 3.5794 23.552 3.6494 34.031-1.2187v0.031c12.054-5.9343 26.101-22.343 34.844-40.688 15.985-33.541 33.797-126.34 46-239.59 1.0341-9.5973 13.031-174.36 13.031-178.79l140.25-0.2062c-9.2089 64.187-14.802 128.9-20.312 193.5-1.7146 22.465-2.3431 96.724-1 117.16 3.7518 57.075 12.989 92.631 29.906 115 14.68 19.411 32.214 31.323 52.812 35.906 9.2392 2.0555 28.464 1.5225 37.844-1.0625 15.806-4.3559 32.792-14.858 47.062-29.094 18.537-18.492 30.485-41.756 39.469-76.906 3.464-13.553 8.9688-42.819 8.9688-47.594l-17.406 0.3437c-2.9839 14.493-4.1572 19.007-6.4688 24.688-6.6041 16.228-19.404 28.301-36.125 34.156-20.731 6.1896-42.772 3.0609-61.188-7.8124-17.898-11.691-28.855-31.322-33.406-59.875-4.7688-99.638 6.7697-199.58 20.594-298.16l135-0.25v-81.062z"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>pi</dc:title>
+        <dc:date>2010-10-03T21:44:24</dc:date>
+        <dc:description>pi symbol</dc:description>
+        <dc:source>http://openclipart.org/detail/88501/pi-by-bnielsen</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>bnielsen</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>math</rdf:li>
+            <rdf:li>pi</rdf:li>
+            <rdf:li>symbol</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

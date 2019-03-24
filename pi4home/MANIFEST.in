@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+include pi4home/dashboard/templates/*.html
+include pi4home/dashboard/static/*.js
+include pi4home/dashboard/static/*.css
+include pi4home/dashboard/static/*.ico
