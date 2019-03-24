@@ -6,7 +6,7 @@ from pi4home.automation import ACTION_REGISTRY, LambdaAction
 import pi4home.config_validation as cv
 from pi4home.const import CONF_ARGS, CONF_BAUD_RATE, CONF_FORMAT, CONF_HARDWARE_UART, CONF_ID, \
     CONF_LEVEL, CONF_LOGS, CONF_TAG, CONF_TX_BUFFER_SIZE
-from pi4home.core import CORE, EsphomeError, Lambda
+from pi4home.core import CORE, pi4homeError, Lambda
 from pi4home.cpp_generator import Pvariable, RawExpression, add, process_lambda, statement
 from pi4home.cpp_types import App, Component, pi4home_ns, global_ns, void
 from pi4home.py_compat import text_type
@@ -66,7 +66,7 @@ def validate_local_no_higher_than_global(value):
     global_level = value.get(CONF_LEVEL, 'DEBUG')
     for tag, level in value.get(CONF_LOGS, {}).items():
         if LOG_LEVEL_SEVERITY.index(level) > LOG_LEVEL_SEVERITY.index(global_level):
-            raise EsphomeError(u"The local log level {} for {} must be less severe than the "
+            raise pi4homeError(u"The local log level {} for {} must be less severe than the "
                                u"global log level {}.".format(level, tag, global_level))
     return value
 

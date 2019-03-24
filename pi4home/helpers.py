@@ -102,26 +102,26 @@ def is_ip_address(host):
 
 
 def _resolve_with_zeroconf(host):
-    from pi4home.core import EsphomeError
+    from pi4home.core import pi4homeError
     try:
         zc = Zeroconf()
     except Exception:
-        raise EsphomeError("Cannot start mDNS sockets, is this a docker container without "
+        raise pi4homeError("Cannot start mDNS sockets, is this a docker container without "
                            "host network mode?")
     try:
         info = zc.resolve_host(host + '.')
     except Exception as err:
-        raise EsphomeError("Error resolving mDNS hostname: {}".format(err))
+        raise pi4homeError("Error resolving mDNS hostname: {}".format(err))
     finally:
         zc.close()
     if info is None:
-        raise EsphomeError("Error resolving address with mDNS: Did not respond. "
+        raise pi4homeError("Error resolving address with mDNS: Did not respond. "
                            "Maybe the device is offline.")
     return info
 
 
 def resolve_ip_address(host):
-    from pi4home.core import EsphomeError
+    from pi4home.core import pi4homeError
 
     try:
         ip = socket.gethostbyname(host)
@@ -129,7 +129,7 @@ def resolve_ip_address(host):
         if host.endswith('.local'):
             ip = _resolve_with_zeroconf(host)
         else:
-            raise EsphomeError("Error resolving IP address: {}".format(err))
+            raise pi4homeError("Error resolving IP address: {}".format(err))
 
     return ip
 

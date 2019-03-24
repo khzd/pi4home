@@ -1,0 +1,232 @@
+Version 1.8.0
+=============
+
+.. seo::
+    :description: Changelog for pi4homelib version 1.8.0.
+    :author: Otto Winter
+    :author_twitter: @OttoWinter_
+
+.. imgtable::
+
+    Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
+    Nextion, components/display/nextion, nextion.jpg
+    SSD1306, components/display/ssd1306, ssd1306.jpg
+
+    MAX7219, components/display/max7219, max7219.jpg
+    LCD Display, components/display/lcd_display, lcd.jpg
+    RCSwitch Integration, components/switch/remote_transmitter.html#rcswitch-remote-codes, remote.svg
+
+    SPI Bus, components/spi, spi.svg
+    UART Bus, components/uart, uart.svg
+    Real Time Clock, components/time, clock-outline.svg
+
+    Uptime Sensor, components/sensor/uptime, timer.svg
+    PN532, components/binary_sensor/pn532, pn532.jpg
+    RDM6300, components/binary_sensor/rdm6300, rdm6300.jpg
+
+    BLE RSSI, components/sensor/ble_rssi, bluetooth.svg
+    Xiaomi MiFlora, components/sensor/xiaomi_miflora, xiaomi_miflora.jpg
+    Xiaomi MiJia, components/sensor/xiaomi_mijia, xiaomi_mijia.jpg
+
+    HMC5883L, components/sensor/hmc5883l, hmc5883l.jpg
+    HX711, components/sensor/hx711, hx711.jpg
+    HLW8012, components/sensor/hlw8012, hlw8012.svg
+
+    BMP280, components/sensor/bmp280, bmp280.jpg
+    INA219, components/sensor/ina219, ina219.jpg
+    INA3221, components/sensor/ina3221, ina3221.jpg
+
+    MH-Z19, components/sensor/mhz19, mhz19.jpg
+    MS5611, components/sensor/ms5611, ms5611.jpg
+    TCS34725, components/sensor/tcs34725, tcs34725.jpg
+
+    RGBWW Light, components/light/rgbww, rgbw.png
+    Cold+Warm White Light, components/light/cwww, brightness-medium.svg
+    Light Effects, components/light/index#light-effects, creation.svg
+
+Hi everyone,
+
+Today I have a new version of pi4homelib with lots of new features and tons of time put in to present to you and
+I hope you're as excited as I am to try these new things out :)
+
+This release mainly focuses on these new features:
+
+- Lots of Bug Fixes - Now that most of the hardware has arrived from china, I was able to fix a bunch
+  of bugs with a lot of integrations.
+- :doc:`Displays! </components/display/index>`
+- NFC/RFID Readers (:doc:`PN532 </components/binary_sensor/pn532>` and :doc:`RDM6300 </components/binary_sensor/rdm6300>`)
+- New :doc:`ESP32 BLE integrations </components/esp32_ble_tracker>` like :doc:`Xiaomi MiFlora </components/sensor/xiaomi_miflora>`
+- Core Changes like the addition of the :ref:`SPI bus <spi>` and :ref:`UART bus <uart>`
+- Lots of new :ref:`light effects <light-effects>` and support for cold-white/warm-white lights.
+- A LOGO FOR THIS PROJECT!!! Thanks a lot to `@messimore <https://github.com/messismore>`__ for
+  this visual masterpiece.
+
+And if you find pi4homelib great and have some of your projects using it, please do spread the word online
+(like `Christoph Dahlen did <https://www.dahlen.org/2018/08/esp8266-via-pi4homelib-mit-home-assistant-verbinden/>`__)
+and/or create :ref:`cookbook <cookbook>` entries so that others can learn from your work. Of course the main objective
+of this website is to document pi4homelib's features, but my vision is that it also inspires others to start
+awesome projects ☀️
+
+Special thanks to all the contributors for this release:
+
+- pi4homeyaml: Add ‘only-generate’ parameter to generate command to only generate the C++ code
+  `#84 <https://github.com/khzd/pi4homeyaml/pull/84>`__ by `@apeeters <https://github.com/apeeters>`__
+- pi4homeyaml: Fix pi4homeyaml logs for tls enabled mqtt brokers
+  `#118 <https://github.com/khzd/pi4homeyaml/pull/118>`__ by `@johnerikhalse <https://github.com/johnerikhalse>`__
+- pi4homelib: Add Samsung IR codes `#141 <https://github.com/khzd/pi4homelib/pull/141>`__
+  by `@escoand <https://github.com/escoand>`__
+- pi4homelib: Add support for SNTP and RTC `#76 <https://github.com/khzd/pi4homelib/pull/76>`__
+  by `@brandond <https://github.com/brandond>`__
+- pi4homelib: Run travis jobs in parallel `#123 <https://github.com/khzd/pi4homelib/pull/123>`__
+  by `@lobradov <https://github.com/lobradov>`__
+- pi4homelib: Fix typo in dallas error message `#125 <https://github.com/khzd/pi4homelib/pull/125>`__
+  by `@janpieper <https://github.com/janpieper>`__
+- pi4homelib: Fix pi4homelib examples `#124 <https://github.com/khzd/pi4homelib/pull/124>`__
+  by `@lobradov <https://github.com/lobradov>`__
+- pi4homelib: Fix panic in binary_sensor template `#111 <https://github.com/khzd/pi4homelib/pull/111>`__
+  by `@nunofgs <https://github.com/nunofgs>`__
+- pi4homelib: Add ESP8266 library dependency to Arduino IDE instructions `#99 <https://github.com/khzd/pi4homelib/pull/99>`__
+  by `@per1234 <https://github.com/per1234>`__
+- pi4homelib: Fixing I2C readings `#98 <https://github.com/khzd/pi4homelib/pull/98>`__
+  by `@exxamalte <https://github.com/exxamalte>`__
+- pi4homedocs: Note added about resetting the ESP after serial upload before OTA upload
+  `#14 <https://github.com/khzd/pi4homedocs/pull/14>`__ by `@exxamalte <https://github.com/exxamalte>`__
+- pi4homedocs: Add cookbook for dual relay cover `#10 <https://github.com/khzd/pi4homedocs/pull/10>`__
+  by `@aequitas <https://github.com/aequitas>`__
+
+And in some more personal news, you might have noticed that I was not very active in online communications (github, discord, ...)
+and that's partly been due to me concentrating on other stuff (university applications, work and
+`this year's international olympiad of informatics <http://blog.ocg.at/2018/09/dritter-blog-von-der-ioi-in-tsukuba-japan/>`__).
+But admittedly I must say being constantly active online is just very exhausting. As the next few weeks (or even months)
+will leave me with little time to due to the start of my studies, I plan on primarily focusing on GitHub communications.
+Plus I want to put an extra focus on reviewing PRs so that code submitters don't have to wait for weeks.
+
+Other notable changes
+*********************
+
+- Fixed certain occasions where pi4homeyaml could run into recursive dependencies
+- Fixed i2c scans not showing up via MQTT
+- Improved build times by about 60%. Now, the build time should depend on the amount of components you're using,
+  not the total pi4homelib code base size.
+- Fixed ESP32 Touch setup mode
+- Fixed template binary sensors
+- Added the option to specify ``never`` for ``update_interval`` to never
+- Added ``deep_sleep.prevent`` and ``deep_sleep.enter`` actions
+- Fixed ESP32BLETracker surpassing the maximum code size
+- Fixed ESP32BLETracker/Beacon throwing an exception when a warning occurs.
+- Fixed FastLED effects not taking into account the light brightness
+- Fixed compatibility with Arduino core versions below 2.0.4
+- Added ``output.turn_on``, ``output.turn_off`` and ``output.set_level`` actions.
+- Fixed the remote transmitter/receiver using the heap inefficiently on the ESP8266 (was causing reboots)
+- Fixed reliability with reading data from BME280s
+- Fixed gas resistance readings from BME680s
+- Fixed HTU21D readings only working in very verbose mode
+- Sometimes the ESP would create a WiFi hotspot even though it was not configured to do so. That should be fixed now.
+- You can now also have conditional actions. See :ref:`if_action`.
+- The pi4homeyaml dashboard and Hass.io add-on now can be configured with a password.
+- Fixed YAML anchors not working (you can now prefix keys with ``.`` to make pi4homeyaml ignore them)
+- Made Dallas and DHT temperature sensor a bit more reliable by making the code a bit more efficient and thus resolving some timing issues.
+- A ``heartbeat`` filter has been added to :ref:`binary sensors <binary_sensor-filters>`.
+- The :ref:`pi4home-on_loop` trigger has been added.
+- pi4homeyaml now know about more ESP8266/ESP32 boards, so now you can use the board-specific pin
+  names with even more board types.
+- The mqtt client has a new option ``shutdown_message`` which will be sent when the board shuts down safely.
+
+- In actions, instead of
+
+  .. code-block:: yaml
+
+      on_...:
+        then:
+          - switch.turn_on:
+              id: my_switch
+
+  You can now write:
+
+  .. code-block:: yaml
+
+      on_...:
+        then:
+          - switch.turn_on: my_switch
+
+  Or even shorter:
+
+  .. code-block:: yaml
+
+      on_...:
+        - switch.turn_on: my_switch
+
+Breaking Changes
+****************
+
+- The :doc:`core configuration </components/pi4home>` has been reworked a bit to a)
+  make using different arduino framework version easier and b) make editing your local pi4homelib
+  copy easier.
+- Light Effects now need to be manually declared in the config and will no longer show up automatically. Please see :ref:`light-effects`
+- MAX6675 has been migrated to use the new SPI bus (and fixed!). Please see the docs for how to use it now.
+
+Changes in 1.8.1
+****************
+
+- pi4homeyaml: Limit upload speed to 115200 `#122 <https://github.com/khzd/pi4homeyaml/pull/122>`__
+- pi4homeyaml: Fix docker installs using old platformio version `#125 <https://github.com/khzd/pi4homeyaml/pull/125>`__
+- pi4homedocs: Waveshare E-Paper: 1.54in display works `#22 <https://github.com/khzd/pi4homedocs/pull/22>`__ by `@fabaff <https://github.com/fabaff>`__
+
+Changes in 1.8.2
+****************
+
+- pi4homedocs: Update custom sensor docs `#25 <https://github.com/khzd/pi4homedocs/pull/25>`__
+- pi4homedocs: Fix typo in warning message `#18 <https://github.com/khzd/pi4homedocs/pull/18>`__ by `@janpieper <https://github.com/janpieper>`__
+- pi4homedocs: Add alternative SPI pin names `#24 <https://github.com/khzd/pi4homedocs/pull/24>`__
+- pi4homelib: Add toggle payload to MQTT switch component `#152 <https://github.com/khzd/pi4homelib/pull/152>`__
+- pi4homelib: Update custom sensor example `#154 <https://github.com/khzd/pi4homelib/pull/154>`__
+- pi4homelib: Optimize MQTT client memory consumption a bit `#155 <https://github.com/khzd/pi4homelib/pull/155>`__
+- pi4homelib: Fix binary sensor initial value reporting `#156 <https://github.com/khzd/pi4homelib/pull/156>`__
+- pi4homeyaml: Fix binary sensor heartbeat not working `#130 <https://github.com/khzd/pi4homeyaml/pull/130>`__
+- pi4homeyaml: Fix MQTT discovery enabled when discovery_retain in config `#131 <https://github.com/khzd/pi4homeyaml/pull/131>`__
+- pi4homelib: Fix binary sensor heartbeat filter `#157 <https://github.com/khzd/pi4homelib/pull/157>`__
+- pi4homelib: Fix SSD1306 reset order for i2c `#159 <https://github.com/khzd/pi4homelib/pull/159>`__
+- pi4homeyaml: Fix SSD1306 lambda `#132 <https://github.com/khzd/pi4homeyaml/pull/132>`__
+- pi4homeyaml: Enable Travis Tests `#133 <https://github.com/khzd/pi4homeyaml/pull/133>`__
+- pi4homedocs: Fix typo in display docs `#26 <https://github.com/khzd/pi4homedocs/pull/26>`__ by `@jblb <https://github.com/jblb>`__
+- pi4homeyaml: Auto-Update pi4homelib dev version `#134 <https://github.com/khzd/pi4homeyaml/pull/134>`__
+- pi4homeyaml: Add SSD1306 64x48 display `#136 <https://github.com/khzd/pi4homeyaml/pull/136>`__
+- pi4homedocs: Typo in display docs `#28 <https://github.com/khzd/pi4homedocs/pull/28>`__ by `@yuanl <https://github.com/yuanl>`__
+- pi4homedocs: Typo fix. `#33 <https://github.com/khzd/pi4homedocs/pull/33>`__ by `@corbanmailloux <https://github.com/corbanmailloux>`__
+- pi4homelib: Fix typo "noting" `#172 <https://github.com/khzd/pi4homelib/pull/172>`__ by `@TheJulianJES <https://github.com/TheJulianJES>`__
+- pi4homedocs: Added docker local USB port mapping `#31 <https://github.com/khzd/pi4homedocs/pull/31>`__
+  by `@ladefoged81 <https://github.com/ladefoged81>`__
+- pi4homedocs: Fixed typo `#30 <https://github.com/khzd/pi4homedocs/pull/30>`__
+  by `@ladefoged81 <https://github.com/ladefoged81>`__
+- pi4homedocs: Add missing (required) name to example. `#29 <https://github.com/khzd/pi4homedocs/pull/29>`__
+  by `@corbanmailloux <https://github.com/corbanmailloux>`__
+- pi4homedocs: Add ESP32 BLE workaround docs `#34 <https://github.com/khzd/pi4homedocs/pull/34>`__
+- pi4homelib: Apply effect after changing colors `#169 <https://github.com/khzd/pi4homelib/pull/169>`__
+  by `@TheJulianJES <https://github.com/TheJulianJES>`__
+- pi4homelib: Add 64x48 SSD1306 Display `#161 <https://github.com/khzd/pi4homelib/pull/161>`__
+- pi4homedocs: Fix output link `#35 <https://github.com/khzd/pi4homedocs/pull/35>`__
+- pi4homedocs: Fix pulse counter API typo `#36 <https://github.com/khzd/pi4homedocs/pull/36>`__
+- pi4homedocs: Fix display docs format typo `#37 <https://github.com/khzd/pi4homedocs/pull/37>`__
+- pi4homeyaml: Fix serial monitor opening when logger disabled `#138 <https://github.com/khzd/pi4homeyaml/pull/138>`__
+- pi4homeyaml: Add clean MQTT button to dashboard `#139 <https://github.com/khzd/pi4homeyaml/pull/139>`__
+- pi4homeyaml: Fix using unicode in lambdas `#141 <https://github.com/khzd/pi4homeyaml/pull/141>`__
+- pi4homeyaml: Bump platformio-espressif32 to 1.4.0 `#142 <https://github.com/khzd/pi4homeyaml/pull/142>`__
+- pi4homeyaml: Docker default to starting dashboard `#143 <https://github.com/khzd/pi4homeyaml/pull/143>`__
+- pi4homedocs: Improve WiFi&Manual IP docs `#38 <https://github.com/khzd/pi4homedocs/pull/38>`__
+- pi4homedocs: Fix PN532 update_interval typo `#39 <https://github.com/khzd/pi4homedocs/pull/39>`__
+- pi4homedocs: Fix Sonoff S20/4CH example configurations `#40 <https://github.com/khzd/pi4homedocs/pull/40>`__
+- pi4homelib: Split FastLED header from source `#175 <https://github.com/khzd/pi4homelib/pull/175>`__
+- pi4homelib: Fix WiFi AP-only mode `#177 <https://github.com/khzd/pi4homelib/pull/177>`__
+- pi4homelib: Fix RC Switch Transmitters `#178 <https://github.com/khzd/pi4homelib/pull/178>`__
+- pi4homelib: Use dynamic JSON buffer `#179 <https://github.com/khzd/pi4homelib/pull/179>`__
+- pi4homelib: Web Server Print incoming requests `#180 <https://github.com/khzd/pi4homelib/pull/180>`__
+- pi4homelib: Add option to have different log level over MQTT `#176 <https://github.com/khzd/pi4homelib/pull/176>`__
+- pi4homelib: Fix MQTT login with anonymous credentials `#182 <https://github.com/khzd/pi4homelib/pull/182>`__
+- pi4homelib: WiFi: Add power save mode option `#181 <https://github.com/khzd/pi4homelib/pull/181>`__
+- pi4homeyaml: Fix component loader value error `#149 <https://github.com/khzd/pi4homeyaml/pull/149>`__
+- pi4homelib: Fix VectorJsonBuffer for ESP8266 (unaligned address) `#183 <https://github.com/khzd/pi4homelib/pull/183>`__
+- pi4homedocs: WiFi: Add power save mode option `#41 <https://github.com/khzd/pi4homedocs/pull/41>`__
+- pi4homedocs: Add SSD1306 64x48 Display `#27 <https://github.com/khzd/pi4homedocs/pull/27>`__
+- pi4homeyaml: WiFi: Add power save mode option `#150 <https://github.com/khzd/pi4homeyaml/pull/150>`__
+
+.. disqus::

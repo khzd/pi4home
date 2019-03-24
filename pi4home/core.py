@@ -18,7 +18,7 @@ from pi4home.py_compat import IS_PY2, integer_types
 _LOGGER = logging.getLogger(__name__)
 
 
-class EsphomeError(Exception):
+class pi4homeError(Exception):
     """General PI4Home exception occurred."""
 
 
@@ -293,7 +293,7 @@ class ID(object):
 
 
 # pylint: disable=too-many-instance-attributes,too-many-public-methods
-class EsphomeCore(object):
+class pi4homeCore(object):
     def __init__(self):
         # True if command is run from dashboard
         self.dashboard = False
@@ -408,7 +408,7 @@ class EsphomeCore(object):
         while self.pending_tasks:
             i += 1
             if i > 1000000:
-                raise EsphomeError("Circular dependency detected!")
+                raise pi4homeError("Circular dependency detected!")
 
             task, domain = self.pending_tasks.popleft()
             _LOGGER.debug("Executing task for domain=%s", domain)
@@ -447,7 +447,7 @@ class EsphomeCore(object):
 
     def register_variable(self, id, obj):
         if id in self.variables:
-            raise EsphomeError("ID {} is already registered".format(id))
+            raise pi4homeError("ID {} is already registered".format(id))
         _LOGGER.debug("Registered variable %s of type %s", id.id, id.type)
         self.variables[id] = obj
 
@@ -455,7 +455,7 @@ class EsphomeCore(object):
         return id in self.variables
 
 
-CORE = EsphomeCore()
+CORE = pi4homeCore()
 
 ConfigType = Dict[str, Any]
-CoreType = EsphomeCore
+CoreType = pi4homeCore

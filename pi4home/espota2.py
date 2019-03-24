@@ -5,7 +5,7 @@ import socket
 import sys
 import time
 
-from pi4home.core import EsphomeError
+from pi4home.core import pi4homeError
 from pi4home.helpers import is_ip_address, resolve_ip_address
 from pi4home.py_compat import IS_PY2, char_to_byte
 
@@ -64,7 +64,7 @@ class ProgressBar(object):
         sys.stderr.flush()
 
 
-class OTAError(EsphomeError):
+class OTAError(pi4homeError):
     pass
 
 
@@ -262,7 +262,7 @@ def run_ota_impl_(remote_host, remote_port, password, filename):
         _LOGGER.info("Resolving IP address of %s", remote_host)
         try:
             ip = resolve_ip_address(remote_host)
-        except EsphomeError as err:
+        except pi4homeError as err:
             _LOGGER.error("Error resolving IP address of %s. Is it connected to WiFi?",
                           remote_host)
             _LOGGER.error("(If this error persists, please set a static IP address: "

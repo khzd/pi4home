@@ -12,7 +12,7 @@ from pi4home.api.client import run_logs
 from pi4home.config import get_component, iter_components, read_config, strip_default_ids
 from pi4home.const import CONF_BAUD_RATE, CONF_BROKER, CONF_PI4HOME, CONF_LOGGER, \
     CONF_USE_CUSTOM_CODE
-from pi4home.core import CORE, EsphomeError
+from pi4home.core import CORE, pi4homeError
 from pi4home.cpp_generator import Expression, RawStatement, add, statement
 from pi4home.helpers import color, indent
 from pi4home.py_compat import IS_PY2, safe_input, text_type
@@ -218,7 +218,7 @@ def upload_program(config, args, host):
 
 def show_logs(config, args, port):
     if 'logger' not in config:
-        raise EsphomeError("Logger is not configured!")
+        raise pi4homeError("Logger is not configured!")
     if get_port_type(port) == 'SERIAL':
         run_miniterm(config, port)
         return 0
@@ -458,7 +458,7 @@ def run_pi4home(argv):
     if args.command in PRE_CONFIG_ACTIONS:
         try:
             return PRE_CONFIG_ACTIONS[args.command](args)
-        except EsphomeError as e:
+        except pi4homeError as e:
             _LOGGER.error(e)
             return 1
 
@@ -472,7 +472,7 @@ def run_pi4home(argv):
     if args.command in POST_CONFIG_ACTIONS:
         try:
             return POST_CONFIG_ACTIONS[args.command](args, config)
-        except EsphomeError as e:
+        except pi4homeError as e:
             _LOGGER.error(e)
             return 1
     safe_print(u"Unknown command {}".format(args.command))
@@ -482,7 +482,7 @@ def run_pi4home(argv):
 def main():
     try:
         return run_pi4home(sys.argv)
-    except EsphomeError as e:
+    except pi4homeError as e:
         _LOGGER.error(e)
         return 1
     except KeyboardInterrupt:

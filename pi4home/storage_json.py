@@ -159,7 +159,7 @@ class StorageJSON(object):
         return isinstance(o, StorageJSON) and self.as_dict() == o.as_dict()
 
 
-class EsphomeStorageJSON(object):
+class pi4homeStorageJSON(object):
     def __init__(self, storage_version, cookie_secret, last_update_check,
                  remote_version):
         # Version of the storage JSON schema
@@ -200,7 +200,7 @@ class EsphomeStorageJSON(object):
             f_handle.write(self.to_json())
 
     @staticmethod
-    def _load_impl(path):  # type: (str) -> Optional[EsphomeStorageJSON]
+    def _load_impl(path):  # type: (str) -> Optional[pi4homeStorageJSON]
         with codecs.open(path, 'r', encoding='utf-8') as f_handle:
             text = f_handle.read()
         storage = json.loads(text, encoding='utf-8')
@@ -208,19 +208,19 @@ class EsphomeStorageJSON(object):
         cookie_secret = storage.get('cookie_secret')
         last_update_check = storage.get('last_update_check')
         remote_version = storage.get('remote_version')
-        return EsphomeStorageJSON(storage_version, cookie_secret, last_update_check,
+        return pi4homeStorageJSON(storage_version, cookie_secret, last_update_check,
                                   remote_version)
 
     @staticmethod
-    def load(path):  # type: (str) -> Optional[EsphomeStorageJSON]
+    def load(path):  # type: (str) -> Optional[pi4homeStorageJSON]
         try:
-            return EsphomeStorageJSON._load_impl(path)
+            return pi4homeStorageJSON._load_impl(path)
         except Exception:  # pylint: disable=broad-except
             return None
 
     @staticmethod
-    def get_default():  # type: () -> EsphomeStorageJSON
-        return EsphomeStorageJSON(
+    def get_default():  # type: () -> pi4homeStorageJSON
+        return pi4homeStorageJSON(
             storage_version=1,
             cookie_secret=binascii.hexlify(os.urandom(64)),
             last_update_check=None,
@@ -228,4 +228,4 @@ class EsphomeStorageJSON(object):
         )
 
     def __eq__(self, o):  # type: (Any) -> bool
-        return isinstance(o, EsphomeStorageJSON) and self.as_dict() == o.as_dict()
+        return isinstance(o, pi4homeStorageJSON) and self.as_dict() == o.as_dict()

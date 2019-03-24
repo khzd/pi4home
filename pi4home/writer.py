@@ -11,7 +11,7 @@ from pi4home.config import iter_components
 from pi4home.const import ARDUINO_VERSION_ESP32_1_0_0, ARDUINO_VERSION_ESP8266_2_5_0, \
     ARDUINO_VERSION_ESP8266_DEV, CONF_BOARD_FLASH_MODE, CONF_BRANCH, CONF_COMMIT, CONF_PI4HOME, \
     CONF_LOCAL, CONF_PLATFORMIO_OPTIONS, CONF_REPOSITORY, CONF_TAG, CONF_USE_CUSTOM_CODE
-from pi4home.core import CORE, EsphomeError
+from pi4home.core import CORE, pi4homeError
 from pi4home.core_config import GITHUB_ARCHIVE_ZIP, LIBRARY_URI_REPO, VERSION_REGEX
 from pi4home.helpers import mkdir_p, run_system_command, symlink
 from pi4home.pins import ESP8266_FLASH_SIZES, ESP8266_LD_SCRIPTS
@@ -428,17 +428,17 @@ def get_ini_content():
 def find_begin_end(text, begin_s, end_s):
     begin_index = text.find(begin_s)
     if begin_index == -1:
-        raise EsphomeError(u"Could not find auto generated code begin in file, either "
+        raise pi4homeError(u"Could not find auto generated code begin in file, either "
                            u"delete the main sketch file or insert the comment again.")
     if text.find(begin_s, begin_index + 1) != -1:
-        raise EsphomeError(u"Found multiple auto generate code begins, don't know "
+        raise pi4homeError(u"Found multiple auto generate code begins, don't know "
                            u"which to chose, please remove one of them.")
     end_index = text.find(end_s)
     if end_index == -1:
-        raise EsphomeError(u"Could not find auto generated code end in file, either "
+        raise pi4homeError(u"Could not find auto generated code end in file, either "
                            u"delete the main sketch file or insert the comment again.")
     if text.find(end_s, end_index + 1) != -1:
-        raise EsphomeError(u"Found multiple auto generate code endings, don't know "
+        raise pi4homeError(u"Found multiple auto generate code endings, don't know "
                            u"which to chose, please remove one of them.")
 
     return text[:begin_index], text[(end_index + len(end_s)):]
@@ -454,7 +454,7 @@ def write_platformio_ini(content, path):
             with codecs.open(path, 'r', encoding='utf-8') as f_handle:
                 text = f_handle.read()
         except OSError:
-            raise EsphomeError(u"Could not read ini file at {}".format(path))
+            raise pi4homeError(u"Could not read ini file at {}".format(path))
         prev_file = text
         content_format = find_begin_end(text, INI_AUTO_GENERATE_BEGIN, INI_AUTO_GENERATE_END)
     else:
@@ -484,7 +484,7 @@ def write_cpp(code_s):
             with codecs.open(path, 'r', encoding='utf-8') as f_handle:
                 text = f_handle.read()
         except OSError:
-            raise EsphomeError(u"Could not read C++ file at {}".format(path))
+            raise pi4homeError(u"Could not read C++ file at {}".format(path))
         prev_file = text
         code_format = find_begin_end(text, CPP_AUTO_GENERATE_BEGIN, CPP_AUTO_GENERATE_END)
         code_format_ = find_begin_end(code_format[0], CPP_INCLUDE_BEGIN, CPP_INCLUDE_END)

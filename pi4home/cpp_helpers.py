@@ -1,6 +1,6 @@
 from pi4home.const import CONF_INVERTED, CONF_MODE, CONF_NUMBER, CONF_PCF8574, \
     CONF_SETUP_PRIORITY, CONF_MCP23017
-from pi4home.core import CORE, EsphomeError
+from pi4home.core import CORE, pi4homeError
 from pi4home.cpp_generator import IntLiteral, RawExpression
 from pi4home.cpp_types import GPIOInputPin, GPIOOutputPin
 
@@ -24,7 +24,7 @@ def generic_gpio_pin_expression_(conf, mock_obj, default_mode):
             yield hub.make_output_pin(number, inverted)
             return
 
-        raise EsphomeError(u"Unknown default mode {}".format(default_mode))
+        raise pi4homeError(u"Unknown default mode {}".format(default_mode))
     if CONF_MCP23017 in conf:
         from pi4home.components import mcp23017
 
@@ -39,7 +39,7 @@ def generic_gpio_pin_expression_(conf, mock_obj, default_mode):
             yield hub.make_output_pin(number, inverted)
             return
 
-        raise EsphomeError(u"Unknown default mode {}".format(default_mode))
+        raise pi4homeError(u"Unknown default mode {}".format(default_mode))
     if len(conf) == 1:
         yield IntLiteral(number)
         return

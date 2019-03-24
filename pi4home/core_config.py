@@ -13,7 +13,7 @@ from pi4home.const import ARDUINO_VERSION_ESP32_DEV, ARDUINO_VERSION_ESP8266_DEV
     CONF_PLATFORMIO_OPTIONS, CONF_PRIORITY, CONF_REPOSITORY, CONF_TAG, CONF_TRIGGER_ID, \
     CONF_USE_CUSTOM_CODE, PI4HOME_CORE_VERSION, ESP_PLATFORM_ESP32, ESP_PLATFORM_ESP8266, \
     CONF_ESP8266_RESTORE_FROM_FLASH
-from pi4home.core import CORE, EsphomeError
+from pi4home.core import CORE, pi4homeError
 from pi4home.cpp_generator import Pvariable, RawExpression, add
 from pi4home.cpp_types import App, const_char_ptr, pi4home_ns
 from pi4home.py_compat import text_type
@@ -197,14 +197,14 @@ def preload_core_config(config):
                         "Please replace 'pi4homeyaml:' in your configuration with 'pi4home:'.")
         config[CONF_PI4HOME] = config.pop('pi4homeyaml')
     if CONF_PI4HOME not in config:
-        raise EsphomeError(u"No pi4home section in config")
+        raise pi4homeError(u"No pi4home section in config")
     core_conf = config[CONF_PI4HOME]
     if CONF_PLATFORM not in core_conf:
-        raise EsphomeError("pi4home.platform not specified.")
+        raise pi4homeError("pi4home.platform not specified.")
     if CONF_BOARD not in core_conf:
-        raise EsphomeError("pi4home.board not specified.")
+        raise pi4homeError("pi4home.board not specified.")
     if CONF_NAME not in core_conf:
-        raise EsphomeError("pi4home.name not specified.")
+        raise pi4homeError("pi4home.name not specified.")
 
     try:
         CORE.esp_platform = validate_platform(core_conf[CONF_PLATFORM])
@@ -213,7 +213,7 @@ def preload_core_config(config):
         CORE.build_path = CORE.relative_path(
             cv.string(core_conf.get(CONF_BUILD_PATH, default_build_path())))
     except vol.Invalid as e:
-        raise EsphomeError(text_type(e))
+        raise pi4homeError(text_type(e))
 
 
 def to_code(config):

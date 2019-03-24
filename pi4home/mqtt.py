@@ -13,7 +13,7 @@ import paho.mqtt.client as mqtt
 from pi4home.const import CONF_BROKER, CONF_DISCOVERY_PREFIX, CONF_PI4HOME, \
     CONF_LOG_TOPIC, CONF_MQTT, CONF_NAME, CONF_PASSWORD, CONF_PORT, CONF_SSL_FINGERPRINTS, \
     CONF_TOPIC, CONF_TOPIC_PREFIX, CONF_USERNAME
-from pi4home.core import CORE, EsphomeError
+from pi4home.core import CORE, pi4homeError
 from pi4home.helpers import color
 from pi4home.util import safe_print
 
@@ -67,7 +67,7 @@ def initialize(config, subscriptions, on_message, username, password, client_id)
     try:
         client.connect(config[CONF_MQTT][CONF_BROKER], config[CONF_MQTT][CONF_PORT])
     except socket.error as err:
-        raise EsphomeError("Cannot connect to MQTT broker: {}".format(err))
+        raise pi4homeError("Cannot connect to MQTT broker: {}".format(err))
 
     try:
         client.loop_forever()

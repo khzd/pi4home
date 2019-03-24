@@ -11,7 +11,7 @@ import yaml
 import yaml.constructor
 
 from pi4home import core
-from pi4home.core import EsphomeError, HexInt, IPAddress, Lambda, MACAddress, TimePeriod
+from pi4home.core import pi4homeError, HexInt, IPAddress, Lambda, MACAddress, TimePeriod
 from pi4home.py_compat import string_types, text_type, IS_PY2
 
 _LOGGER = logging.getLogger(__name__)
@@ -55,12 +55,12 @@ def _load_yaml_internal(fname):
         with codecs.open(fname, encoding='utf-8') as conf_file:
             return yaml.load(conf_file, Loader=SafeLineLoader) or OrderedDict()
     except yaml.YAMLError as exc:
-        raise EsphomeError(exc)
+        raise pi4homeError(exc)
     except IOError as exc:
-        raise EsphomeError(u"Error accessing file {}: {}".format(fname, exc))
+        raise pi4homeError(u"Error accessing file {}: {}".format(fname, exc))
     except UnicodeDecodeError as exc:
         _LOGGER.error(u"Unable to read file %s: %s", fname, exc)
-        raise EsphomeError(exc)
+        raise pi4homeError(exc)
 
 
 def dump(dict_):
@@ -75,7 +75,7 @@ def custom_construct_pairs(loader, node):
         if isinstance(kv, yaml.ScalarNode):
             obj = loader.construct_object(kv)
             if not isinstance(obj, dict):
-                raise EsphomeError(
+                raise pi4homeError(
                     "Expected mapping for anchored include tag, got {}".format(type(obj)))
             for key, value in obj.items():
                 pairs.append((key, value))
@@ -158,7 +158,7 @@ def _ordered_dict(loader, node):
 
         if key in seen:
             fname = getattr(loader.stream, 'name', '')
-            raise EsphomeError(u'YAML file {} contains duplicate key "{}". '
+            raise pi4homeError(u'YAML file {} contains duplicate key "{}". '
                                u'Check lines {} and {}.'.format(fname, key, seen[key], line))
         seen[key] = line
 
@@ -191,7 +191,7 @@ def _env_var_yaml(_, node):
         return os.getenv(args[0], u' '.join(args[1:]))
     if args[0] in os.environ:
         return os.environ[args[0]]
-    raise EsphomeError(u"Environment variable {} not defined.".format(node.value))
+    raise pi4homeError(u"Environment variable {} not defined.".format(node.value))
 
 
 def _include_yaml(loader, node):
@@ -275,7 +275,7 @@ def _secret_yaml(loader, node):
     secret_path = os.path.join(os.path.dirname(loader.name), SECRET_YAML)
     secrets = _load_yaml_internal(secret_path)
     if node.value not in secrets:
-        raise EsphomeError(u"Secret {} not defined".format(node.value))
+        raise pi4homeError(u"Secret {} not defined".format(node.value))
     val = secrets[node.value]
     _SECRET_VALUES[text_type(val)] = node.value
     return val

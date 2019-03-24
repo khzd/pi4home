@@ -87,7 +87,7 @@ def to_code(config):
     try:
         font = ImageFont.truetype(path, config[CONF_SIZE])
     except Exception as e:
-        raise core.EsphomeError(u"Could not load truetype file {}: {}".format(path, e))
+        raise core.pi4homeError(u"Could not load truetype file {}: {}".format(path, e))
 
     ascent, descent = font.getmetrics()
 

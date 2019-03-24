@@ -12,7 +12,7 @@ from google.protobuf import message  # noqa
 from pi4home import const
 import pi4home.api.api_pb2 as pb
 from pi4home.const import CONF_PASSWORD, CONF_PORT
-from pi4home.core import EsphomeError
+from pi4home.core import pi4homeError
 from pi4home.helpers import resolve_ip_address, indent, color
 from pi4home.py_compat import text_type, IS_PY2, byte_to_bytes, char_to_byte, format_bytes
 from pi4home.util import safe_print
@@ -20,7 +20,7 @@ from pi4home.util import safe_print
 _LOGGER = logging.getLogger(__name__)
 
 
-class APIConnectionError(EsphomeError):
+class APIConnectionError(pi4homeError):
     pass
 
 
@@ -179,7 +179,7 @@ class APIClient(threading.Thread):
 
         try:
             ip = resolve_ip_address(self._address)
-        except EsphomeError as err:
+        except pi4homeError as err:
             _LOGGER.warning("Error resolving IP address of %s. Is it connected to WiFi?",
                             self._address)
             _LOGGER.warning("(If this error persists, please set a static IP address: "

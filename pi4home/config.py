@@ -10,7 +10,7 @@ import voluptuous as vol
 from pi4home import core, core_config, yaml_util
 from pi4home.components import substitutions
 from pi4home.const import CONF_PI4HOME, CONF_PLATFORM, ESP_PLATFORMS
-from pi4home.core import CORE, EsphomeError
+from pi4home.core import CORE, pi4homeError
 from pi4home.helpers import color, indent
 from pi4home.py_compat import text_type
 from pi4home.util import safe_print
@@ -441,7 +441,7 @@ def load_config():
     try:
         config = yaml_util.load_yaml(CORE.config_path)
     except OSError:
-        raise EsphomeError(u"Invalid YAML at {}. Please see YAML syntax reference or use an online "
+        raise pi4homeError(u"Invalid YAML at {}. Please see YAML syntax reference or use an online "
                            u"YAML syntax validator".format(CORE.config_path))
     CORE.raw_config = config
     config = substitutions.do_substitution_pass(config)
@@ -449,7 +449,7 @@ def load_config():
 
     try:
         result = validate_config(config)
-    except EsphomeError:
+    except pi4homeError:
         raise
     except Exception:
         _LOGGER.error(u"Unexpected exception while reading configuration:")
@@ -593,7 +593,7 @@ def read_config(verbose):
     _LOGGER.info("Reading configuration...")
     try:
         res = load_config()
-    except EsphomeError as err:
+    except pi4homeError as err:
         _LOGGER.error(u"Error while reading config: %s", err)
         return None
     if res.errors:

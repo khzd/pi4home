@@ -5,7 +5,7 @@ import voluptuous as vol
 
 from pi4home import core
 import pi4home.config_validation as cv
-from pi4home.core import EsphomeError
+from pi4home.core import pi4homeError
 from pi4home.py_compat import string_types
 
 _LOGGER = logging.getLogger(__name__)
@@ -111,7 +111,7 @@ def do_substitution_pass(config):
 
     substitutions = config[CONF_SUBSTITUTIONS]
     if not isinstance(substitutions, dict):
-        raise EsphomeError(u"Substitutions must be a key to value mapping, got {}"
+        raise pi4homeError(u"Substitutions must be a key to value mapping, got {}"
                            u"".format(type(substitutions)))
 
     key = ''
@@ -128,7 +128,7 @@ def do_substitution_pass(config):
     except vol.Invalid as err:
         err.path.append(key)
 
-        raise EsphomeError(u"Error while parsing substitutions: {}".format(err))
+        raise pi4homeError(u"Error while parsing substitutions: {}".format(err))
 
     config[CONF_SUBSTITUTIONS] = substitutions
     _substitute_item(substitutions, config, [])

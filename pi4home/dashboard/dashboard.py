@@ -29,7 +29,7 @@ from pi4home import const
 from pi4home.__main__ import get_serial_ports
 from pi4home.helpers import mkdir_p, get_bool_env, run_system_command
 from pi4home.py_compat import IS_PY2
-from pi4home.storage_json import EsphomeStorageJSON, StorageJSON, \
+from pi4home.storage_json import pi4homeStorageJSON, StorageJSON, \
     pi4home_storage_path, ext_storage_path, trash_storage_path
 from pi4home.util import shlex_quote
 
@@ -97,9 +97,9 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
 # pylint: disable=abstract-method, arguments-differ
-class EsphomeCommandWebSocket(tornado.websocket.WebSocketHandler):
+class pi4homeCommandWebSocket(tornado.websocket.WebSocketHandler):
     def __init__(self, application, request, **kwargs):
-        super(EsphomeCommandWebSocket, self).__init__(application, request, **kwargs)
+        super(pi4homeCommandWebSocket, self).__init__(application, request, **kwargs)
         self.proc = None
         self.closed = False
 
@@ -151,49 +151,49 @@ class EsphomeCommandWebSocket(tornado.websocket.WebSocketHandler):
         raise NotImplementedError
 
 
-class EsphomeLogsHandler(EsphomeCommandWebSocket):
+class pi4homeLogsHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = CONFIG_DIR + '/' + js['configuration']
         return ["pi4home", "--dashboard", config_file, "logs", '--serial-port', js["port"]]
 
 
-class EsphomeRunHandler(EsphomeCommandWebSocket):
+class pi4homeRunHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = os.path.join(CONFIG_DIR, js['configuration'])
         return ["pi4home", "--dashboard", config_file, "run", '--upload-port', js["port"]]
 
 
-class EsphomeCompileHandler(EsphomeCommandWebSocket):
+class pi4homeCompileHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = os.path.join(CONFIG_DIR, js['configuration'])
         return ["pi4home", "--dashboard", config_file, "compile"]
 
 
-class EsphomeValidateHandler(EsphomeCommandWebSocket):
+class pi4homeValidateHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = os.path.join(CONFIG_DIR, js['configuration'])
         return ["pi4home", "--dashboard", config_file, "config"]
 
 
-class EsphomeCleanMqttHandler(EsphomeCommandWebSocket):
+class pi4homeCleanMqttHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = os.path.join(CONFIG_DIR, js['configuration'])
         return ["pi4home", "--dashboard", config_file, "clean-mqtt"]
 
 
-class EsphomeCleanHandler(EsphomeCommandWebSocket):
+class pi4homeCleanHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = os.path.join(CONFIG_DIR, js['configuration'])
         return ["pi4home", "--dashboard", config_file, "clean"]
 
 
-class EsphomeHassConfigHandler(EsphomeCommandWebSocket):
+class pi4homeHassConfigHandler(pi4homeCommandWebSocket):
     def build_command(self, message):
         js = json.loads(message)
         config_file = os.path.join(CONFIG_DIR, js['configuration'])
@@ -578,13 +578,13 @@ def make_app(debug=False):
     app = tornado.web.Application([
         (RELATIVE_URL + "", MainRequestHandler),
         (RELATIVE_URL + "login", LoginHandler),
-        (RELATIVE_URL + "logs", EsphomeLogsHandler),
-        (RELATIVE_URL + "run", EsphomeRunHandler),
-        (RELATIVE_URL + "compile", EsphomeCompileHandler),
-        (RELATIVE_URL + "validate", EsphomeValidateHandler),
-        (RELATIVE_URL + "clean-mqtt", EsphomeCleanMqttHandler),
-        (RELATIVE_URL + "clean", EsphomeCleanHandler),
-        (RELATIVE_URL + "hass-config", EsphomeHassConfigHandler),
+        (RELATIVE_URL + "logs", pi4homeLogsHandler),
+        (RELATIVE_URL + "run", pi4homeRunHandler),
+        (RELATIVE_URL + "compile", pi4homeCompileHandler),
+        (RELATIVE_URL + "validate", pi4homeValidateHandler),
+        (RELATIVE_URL + "clean-mqtt", pi4homeCleanMqttHandler),
+        (RELATIVE_URL + "clean", pi4homeCleanHandler),
+        (RELATIVE_URL + "hass-config", pi4homeHassConfigHandler),
         (RELATIVE_URL + "edit", EditRequestHandler),
         (RELATIVE_URL + "download.bin", DownloadBinaryRequestHandler),
         (RELATIVE_URL + "serial-ports", SerialPortRequestHandler),
@@ -629,9 +629,9 @@ def start_web_server(args):
 
     if USING_HASSIO_AUTH or USING_PASSWORD:
         path = pi4home_storage_path(CONFIG_DIR)
-        storage = EsphomeStorageJSON.load(path)
+        storage = pi4homeStorageJSON.load(path)
         if storage is None:
-            storage = EsphomeStorageJSON.get_default()
+            storage = pi4homeStorageJSON.get_default()
             storage.save(path)
         COOKIE_SECRET = storage.cookie_secret
 
